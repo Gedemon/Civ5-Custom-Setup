@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Deploy" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Default</Configuration>
+    <ProjectGuid>{fb395ddb-18c3-4df9-8302-aa544f94a15b}</ProjectGuid>
+    <Name>Custom Advanced Setup Screen</Name>
+    <Guid>adbc3334-367b-4435-a584-fd783b712865</Guid>
+    <ModVersion>6</ModVersion>
+    <Stability>Beta</Stability>
+    <Teaser>Custom Setup Screen: more options, allows hotseat with mods</Teaser>
+    <Description>Custom Setup Screen: more options, allows hotseat with mods</Description>
+    <Authors>Gedemon</Authors>
+    <SpecialThanks>
+    </SpecialThanks>
+    <Categories>$Categories$</Categories>
+    <AffectsSavedGames>false</AffectsSavedGames>
+    <MinCompatibleSaveVersion>0</MinCompatibleSaveVersion>
+    <SupportsSinglePlayer>true</SupportsSinglePlayer>
+    <SupportsMultiplayer>true</SupportsMultiplayer>
+    <SupportsMac>true</SupportsMac>
+    <AssemblyName>Custom Setup</AssemblyName>
+    <RootNamespace>Custom Setup</RootNamespace>
+    <ModContent>
+      <Content>
+        <Type>Custom</Type>
+        <Name>Advanced Setup</Name>
+        <Description>Custom Advanced Setup Screen with more options (including hotseat with mods)</Description>
+        <FileName>AdvancedSetup.xml</FileName>
+      </Content>
+      <Content>
+        <Type>Custom</Type>
+        <Name>Load Hotseat Game</Name>
+        <Description>Special screen to reload previously saved hotseat games.</Description>
+        <FileName>HotSeatLoad.xml</FileName>
+      </Content>
+      <Content>
+        <Type>InGameUIAddin</Type>
+        <Name>HotSeat</Name>
+        <Description>HotSeat</Description>
+        <FileName>HotSeatInGame.lua</FileName>
+      </Content>
+    </ModContent>
+    <HideSetupGame>true</HideSetupGame>
+    <SupportsHotSeat>true</SupportsHotSeat>
+    <ModActions>
+      <Action>
+        <Set>OnModActivated</Set>
+        <Type>UpdateDatabase</Type>
+        <FileName>HotSeatData.xml</FileName>
+      </Action>
+    </ModActions>
+    <ModReferences />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Default' ">
+    <OutputPath>.</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Package Only' ">
+    <PackageMod>true</PackageMod>
+    <DeployMod>false</DeployMod>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Deploy Only' ">
+    <PackageMod>false</PackageMod>
+    <DeployMod>true</DeployMod>
+  </PropertyGroup>
+  <ItemGroup>
+    <Content Include="AdvancedSetup.lua">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="AdvancedSetup.xml">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="HotSeatData.xml">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>False</ImportIntoVFS>
+    </Content>
+    <Content Include="GameSetupScreen.xml">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>False</ImportIntoVFS>
+    </Content>
+    <Content Include="HotSeatLoad.xml">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>False</ImportIntoVFS>
+    </Content>
+    <Content Include="GameSetupScreen.lua">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>False</ImportIntoVFS>
+    </Content>
+    <Content Include="HotSeatLoad.lua">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>False</ImportIntoVFS>
+    </Content>
+    <Content Include="HotSeatInGame.lua">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>False</ImportIntoVFS>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Firaxis\ModBuddy\Civ5Mod.targets" />
+</Project>
